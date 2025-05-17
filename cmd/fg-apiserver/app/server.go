@@ -39,7 +39,9 @@ func NewFastGOCommand() *cobra.Command {
 				return err
 			}
 
+			// 从配置文件读取 host，如果配置文件没有指定，serverOptions 也没有该默认值，则返回空字符串
 			fmt.Printf("Read MySQL host from Viper: %s\n", viper.GetString("mysql.host"))
+			// MySQLOptions 其默认值被 viper 从配置文件中读取的值覆盖
 			fmt.Printf("Read MySQL username from opts: %s\n", opts.MySQLOptions.Username)
 
 			jsonData, _ := json.MarshalIndent(opts, "", "  ")

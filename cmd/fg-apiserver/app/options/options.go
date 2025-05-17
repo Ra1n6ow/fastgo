@@ -32,6 +32,7 @@ func NewMySQLOptions() *MySQLOptions {
 }
 
 type ServerOptions struct {
+	// MySQLOptions 字段在被 viper 解析时，会被解析到 mapstructure 对应的 mysql 字段下。
 	MySQLOptions *MySQLOptions `json:"mysql" mapstructure:"mysql"`
 }
 
