@@ -5,7 +5,6 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/ra1n6ow/fastgo/cmd/fg-apiserver/app/options"
-	"github.com/ra1n6ow/fastgo/pkg/version"
 )
 
 var configFile string // 配置文件路径
@@ -39,9 +38,6 @@ func NewFastGOCommand() *cobra.Command {
 	// cobra 支持持久性标志(PersistentFlag)，该标志可用于它所分配的命令以及该命令下的每个子命令
 	// 推荐使用配置文件来配置应用，便于管理配置项
 	cmd.PersistentFlags().StringVarP(&configFile, "config", "c", filePath(), "Path to the fg-apiserver configuration file.")
-
-	// 添加版本标志
-	version.AddFlags(cmd.PersistentFlags())
 
 	return cmd
 }
