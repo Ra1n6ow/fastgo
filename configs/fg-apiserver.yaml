@@ -2,7 +2,7 @@
 mysql:
   #host: abc
   # MySQL 机器 IP 和端口，默认 127.0.0.1:3306
-  addr: 127.0.0.1:3306
+  addr: localhost:3306
   # MySQL 用户名(建议授权最小权限集)
   username: root
   # MySQL 用户密码
