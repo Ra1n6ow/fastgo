@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	mw "github.com/ra1n6ow/fastgo/internal/pkg/middleware"
 	genericoptions "github.com/ra1n6ow/fastgo/pkg/options"
 )
 
@@ -21,6 +23,11 @@ type Server struct {
 
 func (cfg *Config) NewServer() (*Server, error) {
 	engine := gin.New()
+
+	// Recovery 中间件，用来捕获任何 panic 恢复并返回 500 错误
+	mws := []gin.HandlerFunc{gin.Recovery(), mw.NoCache, mw.Cors, mw.RequestID()}
+
+	engine.Use(mws...)
 
 	// 注册 404 Handler
 	engine.NoRoute(func(c *gin.Context) {
